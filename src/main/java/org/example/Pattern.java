@@ -19,7 +19,7 @@ public enum Pattern {
     DECORATOR(9, "Decorator", PatternCategory.STRUCTURAL, "Динамическое добавление поведения", DecoratorDemo::new),
     FACADE(10, "Facade", PatternCategory.STRUCTURAL, "Упрощённый интерфейс к подсистеме", FacadeDemo::new),
     FLYWEIGHT(11, "Flyweight", PatternCategory.STRUCTURAL, "Разделение общего состояния", FlyweightDemo::new),
-    PROXY(12, "Proxy", PatternCategory.STRUCTURAL, "Заместитель с контролем доступа", ProxyDemo::new),
+    PROXY(12, "Proxy", PatternCategory.STRUCTURAL, "Заместитель с отложенной загрузкой", ProxyDemo::new),
 
     CHAIN_OF_RESPONSIBILITY(13, "Chain of Responsibility", PatternCategory.BEHAVIORAL, "Цепочка обработчиков", ChainOfResponsibilityDemo::new),
     COMMAND(14, "Command", PatternCategory.BEHAVIORAL, "Инкапсуляция запроса как объекта", CommandDemo::new),

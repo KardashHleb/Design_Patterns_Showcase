@@ -1,30 +1,39 @@
 package org.example;
 
+import java.io.InputStream;
 import java.util.Arrays;
+import java.util.OptionalInt;
 import java.util.Scanner;
 
 public class ConsoleMenu {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public ConsoleMenu() {
+        this(System.in);
+    }
+
+    public ConsoleMenu(InputStream input) {
+        this.scanner = new Scanner(input);
+    }
 
     public void run() {
         printWelcome();
-        boolean running = true;
-        while (running) {
+        while (true) {
             printMenu();
-            System.out.print("Выберите паттерн (1-23) или 0 для выхода: ");
-            int choice = readInt();
-            if (choice == 0) {
-                running = false;
-                continue;
+            System.out.print("Выберите паттерн (1-" + Pattern.values().length + ") или 0 для выхода: ");
+            OptionalInt choice = readInt();
+            if (choice.isEmpty() || choice.getAsInt() == 0) {
+                break;
             }
-            Pattern pattern = findByNumber(choice);
+            Pattern pattern = findByNumber(choice.getAsInt());
             if (pattern == null) {
                 System.out.println("Неверный выбор. Попробуйте снова.\n");
                 continue;
             }
             runPattern(pattern);
         }
+        System.out.println();
         System.out.println("До свидания!");
     }
 
@@ -55,7 +64,9 @@ public class ConsoleMenu {
         pattern.createDemo().run();
         System.out.println();
         System.out.print("Нажмите Enter для возврата в меню...");
-        scanner.nextLine();
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
         System.out.println();
     }
 
@@ -66,13 +77,19 @@ public class ConsoleMenu {
                 .orElse(null);
     }
 
-    private int readInt() {
-        while (!scanner.hasNextInt()) {
+    /** Читает число; пустой OptionalInt — ввод закончился (EOF, например Ctrl+D / Ctrl+Z). */
+    private OptionalInt readInt() {
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                int value = scanner.nextInt();
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine();
+                }
+                return OptionalInt.of(value);
+            }
             scanner.next();
             System.out.print("Введите число: ");
         }
-        int value = scanner.nextInt();
-        scanner.nextLine();
-        return value;
+        return OptionalInt.empty();
     }
 }

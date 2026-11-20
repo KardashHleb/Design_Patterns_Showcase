@@ -2,11 +2,14 @@ package org.example.patterns.structural;
 
 import org.example.PatternDemo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FlyweightDemo implements PatternDemo {
 
+    /** Разделяемое (внутреннее) состояние: одинаково у многих деревьев. */
     static class TreeType {
         private final String name;
         private final String color;
@@ -22,14 +25,21 @@ public class FlyweightDemo implements PatternDemo {
     }
 
     static class TreeFactory {
-        private static final Map<String, TreeType> cache = new HashMap<>();
+        private record Key(String name, String color) {
+        }
 
-        static TreeType getTreeType(String name, String color) {
-            String key = name + color;
-            return cache.computeIfAbsent(key, k -> new TreeType(name, color));
+        private final Map<Key, TreeType> cache = new HashMap<>();
+
+        TreeType getTreeType(String name, String color) {
+            return cache.computeIfAbsent(new Key(name, color), key -> new TreeType(name, color));
+        }
+
+        int cachedTypes() {
+            return cache.size();
         }
     }
 
+    /** Уникальное (внешнее) состояние: координаты + ссылка на общий TreeType. */
     static class Tree {
         private final int x;
         private final int y;
@@ -49,11 +59,15 @@ public class FlyweightDemo implements PatternDemo {
     @Override
     public void run() {
         System.out.println("Flyweight разделяет общее состояние (TreeType) между деревьями:");
-        TreeType oak = TreeFactory.getTreeType("Дуб", "зелёный");
-        TreeType pine = TreeFactory.getTreeType("Сосна", "тёмно-зелёный");
-        new Tree(1, 2, oak).draw();
-        new Tree(5, 8, oak).draw();
-        new Tree(3, 4, pine).draw();
-        System.out.println("  Уникальных TreeType в кэше: 2 (вместо 3 объектов)");
+        TreeFactory factory = new TreeFactory();
+        List<Tree> forest = new ArrayList<>();
+        forest.add(new Tree(1, 2, factory.getTreeType("Дуб", "зелёный")));
+        forest.add(new Tree(5, 8, factory.getTreeType("Дуб", "зелёный")));
+        forest.add(new Tree(3, 4, factory.getTreeType("Сосна", "тёмно-зелёный")));
+        forest.add(new Tree(7, 1, factory.getTreeType("Сосна", "тёмно-зелёный")));
+        forest.add(new Tree(9, 6, factory.getTreeType("Дуб", "зелёный")));
+
+        forest.forEach(Tree::draw);
+        System.out.println("  Деревьев: " + forest.size() + ", объектов TreeType: " + factory.cachedTypes());
     }
 }
