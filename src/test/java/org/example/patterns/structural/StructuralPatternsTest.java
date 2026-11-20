@@ -17,7 +17,7 @@ class StructuralPatternsTest {
         AdapterDemo.MediaPlayer player = new AdapterDemo.AudioPlayer();
         assertTrue(ConsoleCapture.capture(() -> player.play("a.mp3")).contains("MP3"));
         assertTrue(ConsoleCapture.capture(() -> player.play("b.vlc")).contains("VLC"));
-        assertTrue(ConsoleCapture.capture(() -> player.play("c.avi")).contains("Неподдерживаемый"));
+        assertTrue(ConsoleCapture.capture(() -> player.play("c.avi")).contains("Unsupported"));
     }
 
     @Test
@@ -44,24 +44,24 @@ class StructuralPatternsTest {
         DecoratorDemo.Coffee coffee = new DecoratorDemo.SugarDecorator(
                 new DecoratorDemo.MilkDecorator(new DecoratorDemo.SimpleCoffee()));
         assertEquals(new BigDecimal("2.70"), coffee.cost());
-        assertEquals("Эспрессо + молоко + сахар", coffee.description());
+        assertEquals("Espresso + milk + sugar", coffee.description());
     }
 
     @Test
     void facadeStartsAllSubsystems() {
         String output = ConsoleCapture.capture(() ->
                 new FacadeDemo.HomeTheaterFacade().watchMovie("Film"));
-        assertTrue(output.contains("Усилитель"));
-        assertTrue(output.contains("Проектор"));
-        assertTrue(output.contains("Воспроизведение: Film"));
+        assertTrue(output.contains("Amplifier"));
+        assertTrue(output.contains("Projector"));
+        assertTrue(output.contains("Playing: Film"));
     }
 
     @Test
     void flyweightSharesTreeTypes() {
         FlyweightDemo.TreeFactory factory = new FlyweightDemo.TreeFactory();
-        FlyweightDemo.TreeType oak1 = factory.getTreeType("Дуб", "зелёный");
-        FlyweightDemo.TreeType oak2 = factory.getTreeType("Дуб", "зелёный");
-        FlyweightDemo.TreeType pine = factory.getTreeType("Сосна", "зелёный");
+        FlyweightDemo.TreeType oak1 = factory.getTreeType("Oak", "green");
+        FlyweightDemo.TreeType oak2 = factory.getTreeType("Oak", "green");
+        FlyweightDemo.TreeType pine = factory.getTreeType("Pine", "green");
 
         assertSame(oak1, oak2);
         assertNotSame(oak1, pine);
@@ -82,7 +82,7 @@ class StructuralPatternsTest {
             image.display();
             image.display();
         });
-        assertEquals(1, output.split("Загрузка с диска", -1).length - 1);
-        assertTrue(output.indexOf("created") < output.indexOf("Загрузка с диска"));
+        assertEquals(1, output.split("Loading from disk", -1).length - 1);
+        assertTrue(output.indexOf("created") < output.indexOf("Loading from disk"));
     }
 }

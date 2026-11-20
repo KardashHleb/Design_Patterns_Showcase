@@ -1,9 +1,9 @@
 package org.example;
 
 public enum PatternCategory {
-    CREATIONAL("Порождающие"),
-    STRUCTURAL("Структурные"),
-    BEHAVIORAL("Поведенческие");
+    CREATIONAL("Creational"),
+    STRUCTURAL("Structural"),
+    BEHAVIORAL("Behavioral");
 
     private final String title;
 

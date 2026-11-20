@@ -11,14 +11,14 @@ public class FactoryMethodDemo implements PatternDemo {
     static class PdfDocument implements Document {
         @Override
         public void open() {
-            System.out.println("  → Открыт PDF-документ");
+            System.out.println("  → Opened a PDF document");
         }
     }
 
     static class WordDocument implements Document {
         @Override
         public void open() {
-            System.out.println("  → Открыт Word-документ");
+            System.out.println("  → Opened a Word document");
         }
     }
 
@@ -47,7 +47,7 @@ public class FactoryMethodDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Фабричный метод создаёт нужный тип документа:");
+        System.out.println("Factory Method creates the right type of document:");
         Application pdfApp = new PdfApplication();
         pdfApp.newDocument();
         Application wordApp = new WordApplication();

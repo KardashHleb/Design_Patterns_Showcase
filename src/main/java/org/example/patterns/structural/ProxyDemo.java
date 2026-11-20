@@ -17,12 +17,12 @@ public class ProxyDemo implements PatternDemo {
         }
 
         private void loadFromDisk() {
-            System.out.println("  → Загрузка с диска: " + filename);
+            System.out.println("  → Loading from disk: " + filename);
         }
 
         @Override
         public void display() {
-            System.out.println("  → Отображение: " + filename);
+            System.out.println("  → Displaying: " + filename);
         }
     }
 
@@ -45,11 +45,11 @@ public class ProxyDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Proxy откладывает создание тяжёлого объекта до первого использования:");
+        System.out.println("Proxy delays creating a heavy object until it is first used:");
         Image image = new ImageProxy("photo.png");
-        System.out.println("  (объект ещё не загружен)");
+        System.out.println("  (object not loaded yet)");
         image.display();
-        System.out.println("  (повторный вызов — без повторной загрузки)");
+        System.out.println("  (second call: no reload)");
         image.display();
     }
 }

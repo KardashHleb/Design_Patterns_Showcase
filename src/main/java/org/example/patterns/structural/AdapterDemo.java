@@ -11,13 +11,13 @@ public class AdapterDemo implements PatternDemo {
     static class Mp3Player implements MediaPlayer {
         @Override
         public void play(String filename) {
-            System.out.println("  → Воспроизведение MP3: " + filename);
+            System.out.println("  → Playing MP3: " + filename);
         }
     }
 
     static class AdvancedMediaPlayer {
         void playVlc(String filename) {
-            System.out.println("  → Воспроизведение VLC: " + filename);
+            System.out.println("  → Playing VLC: " + filename);
         }
     }
 
@@ -29,7 +29,7 @@ public class AdapterDemo implements PatternDemo {
             if (filename.endsWith(".vlc")) {
                 advancedPlayer.playVlc(filename);
             } else {
-                System.out.println("  → Неподдерживаемый формат: " + filename);
+                System.out.println("  → Unsupported format: " + filename);
             }
         }
     }
@@ -50,7 +50,7 @@ public class AdapterDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Adapter позволяет проигрывать VLC через единый интерфейс:");
+        System.out.println("Adapter lets the player play VLC files through a common interface:");
         MediaPlayer player = new AudioPlayer();
         player.play("song.mp3");
         player.play("movie.vlc");

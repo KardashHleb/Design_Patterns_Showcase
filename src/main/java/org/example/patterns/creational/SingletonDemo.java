@@ -8,7 +8,7 @@ public class SingletonDemo implements PatternDemo {
         private static DatabaseConnection instance;
 
         private DatabaseConnection() {
-            System.out.println("  → Создано единственное подключение к БД");
+            System.out.println("  → Created the single database connection");
         }
 
         public static synchronized DatabaseConnection getInstance() {
@@ -19,13 +19,13 @@ public class SingletonDemo implements PatternDemo {
         }
 
         public void query(String sql) {
-            System.out.println("  → Выполнение запроса: " + sql);
+            System.out.println("  → Executing query: " + sql);
         }
     }
 
     @Override
     public void run() {
-        System.out.println("Два вызова getInstance() возвращают один и тот же объект:");
+        System.out.println("Two getInstance() calls return the same object:");
         DatabaseConnection first = DatabaseConnection.getInstance();
         DatabaseConnection second = DatabaseConnection.getInstance();
         System.out.println("  first == second: " + (first == second));

@@ -30,7 +30,7 @@ class BehavioralPatternsTest {
     @Test
     void chainReportsUnhandledRequest() {
         ChainOfResponsibilityDemo.Handler chain = new ChainOfResponsibilityDemo.BankHandler();
-        assertTrue(ConsoleCapture.capture(() -> chain.handle(1000)).contains("не обработан"));
+        assertTrue(ConsoleCapture.capture(() -> chain.handle(1000)).contains("not handled"));
     }
 
     @Test
@@ -111,10 +111,10 @@ class BehavioralPatternsTest {
             bob.sendTo("Alice", "secret");
             bob.sendTo("Dave", "anyone?");
 
-            assertEquals(List.of("Bob (лично): secret"), alice.getInbox());
+            assertEquals(List.of("Bob (private): secret"), alice.getInbox());
             assertTrue(carol.getInbox().isEmpty());
         });
-        assertTrue(output.contains("Dave не найден"));
+        assertTrue(output.contains("Dave not found"));
     }
 
     @Test
@@ -133,8 +133,8 @@ class BehavioralPatternsTest {
         agency.subscribe(new ObserverDemo.NewsChannel("A"));
         agency.subscribe(new ObserverDemo.NewsChannel("B"));
         String output = ConsoleCapture.capture(() -> agency.publish("news"));
-        assertTrue(output.contains("A получил новость: news"));
-        assertTrue(output.contains("B получил новость: news"));
+        assertTrue(output.contains("A received news: news"));
+        assertTrue(output.contains("B received news: news"));
     }
 
     @Test
@@ -148,18 +148,18 @@ class BehavioralPatternsTest {
             machine.dispense();
         });
         String[] lines = output.split("\\R");
-        assertTrue(lines[0].contains("Сначала вставьте монету"));
-        assertTrue(lines[1].contains("Монета принята"));
-        assertTrue(lines[2].contains("Монета уже вставлена"));
-        assertTrue(lines[3].contains("Напиток выдан"));
-        assertTrue(lines[4].contains("Сначала вставьте монету"));
+        assertTrue(lines[0].contains("Insert a coin first"));
+        assertTrue(lines[1].contains("Coin accepted"));
+        assertTrue(lines[2].contains("Coin already inserted"));
+        assertTrue(lines[3].contains("Drink dispensed"));
+        assertTrue(lines[4].contains("Insert a coin first"));
     }
 
     @Test
     void strategyCanBeSwappedAtRuntime() {
         StrategyDemo.ShoppingCart cart = new StrategyDemo.ShoppingCart();
         cart.setPaymentStrategy(new StrategyDemo.CreditCardPayment());
-        assertTrue(ConsoleCapture.capture(() -> cart.checkout(10)).contains("кредитной картой"));
+        assertTrue(ConsoleCapture.capture(() -> cart.checkout(10)).contains("by credit card"));
         cart.setPaymentStrategy(new StrategyDemo.PayPalPayment());
         assertTrue(ConsoleCapture.capture(() -> cart.checkout(10)).contains("PayPal"));
     }
@@ -167,9 +167,9 @@ class BehavioralPatternsTest {
     @Test
     void templateMethodRunsStepsInOrder() {
         String[] lines = ConsoleCapture.capture(() -> new TemplateMethodDemo.CsvMiner().mine()).split("\\R");
-        assertTrue(lines[0].contains("Открыт"));
-        assertTrue(lines[1].contains("Извлечены"));
-        assertTrue(lines[2].contains("закрыт"));
+        assertTrue(lines[0].contains("Opened"));
+        assertTrue(lines[1].contains("Extracted"));
+        assertTrue(lines[2].contains("closed"));
     }
 
     @Test

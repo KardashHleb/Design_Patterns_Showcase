@@ -17,12 +17,12 @@ public class CommandDemo implements PatternDemo {
 
         void turnOn() {
             on = true;
-            System.out.println("  → Свет включён");
+            System.out.println("  → Light on");
         }
 
         void turnOff() {
             on = false;
-            System.out.println("  → Свет выключен");
+            System.out.println("  → Light off");
         }
 
         boolean isOn() {
@@ -65,7 +65,7 @@ public class CommandDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Command инкапсулирует действие и поддерживает отмену:");
+        System.out.println("Command wraps an action in an object and supports undo:");
         Light light = new Light();
         RemoteControl remote = new RemoteControl();
         Command turnOn = new LightOnCommand(light);

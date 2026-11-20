@@ -15,7 +15,7 @@ public class DecoratorDemo implements PatternDemo {
     static class SimpleCoffee implements Coffee {
         @Override
         public String description() {
-            return "Эспрессо";
+            return "Espresso";
         }
 
         @Override
@@ -39,7 +39,7 @@ public class DecoratorDemo implements PatternDemo {
 
         @Override
         public String description() {
-            return wrapped.description() + " + молоко";
+            return wrapped.description() + " + milk";
         }
 
         @Override
@@ -55,7 +55,7 @@ public class DecoratorDemo implements PatternDemo {
 
         @Override
         public String description() {
-            return wrapped.description() + " + сахар";
+            return wrapped.description() + " + sugar";
         }
 
         @Override
@@ -66,7 +66,7 @@ public class DecoratorDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Decorator добавляет поведение без изменения базового класса:");
+        System.out.println("Decorator adds behavior without changing the base class:");
         Coffee espresso = new SimpleCoffee();
         System.out.println("  → " + espresso.description() + " = $" + espresso.cost());
         Coffee latte = new MilkDecorator(espresso);

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class FlyweightDemo implements PatternDemo {
 
-    /** Разделяемое (внутреннее) состояние: одинаково у многих деревьев. */
+    /** Shared (intrinsic) state: the same for many trees. */
     static class TreeType {
         private final String name;
         private final String color;
@@ -20,7 +20,7 @@ public class FlyweightDemo implements PatternDemo {
         }
 
         void render(int x, int y) {
-            System.out.println("  → Дерево " + name + " (" + color + ") в (" + x + ", " + y + ")");
+            System.out.println("  → Tree " + name + " (" + color + ") at (" + x + ", " + y + ")");
         }
     }
 
@@ -39,7 +39,7 @@ public class FlyweightDemo implements PatternDemo {
         }
     }
 
-    /** Уникальное (внешнее) состояние: координаты + ссылка на общий TreeType. */
+    /** Unique (extrinsic) state: coordinates + a reference to a shared TreeType. */
     static class Tree {
         private final int x;
         private final int y;
@@ -58,16 +58,16 @@ public class FlyweightDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Flyweight разделяет общее состояние (TreeType) между деревьями:");
+        System.out.println("Flyweight shares common state (TreeType) between trees:");
         TreeFactory factory = new TreeFactory();
         List<Tree> forest = new ArrayList<>();
-        forest.add(new Tree(1, 2, factory.getTreeType("Дуб", "зелёный")));
-        forest.add(new Tree(5, 8, factory.getTreeType("Дуб", "зелёный")));
-        forest.add(new Tree(3, 4, factory.getTreeType("Сосна", "тёмно-зелёный")));
-        forest.add(new Tree(7, 1, factory.getTreeType("Сосна", "тёмно-зелёный")));
-        forest.add(new Tree(9, 6, factory.getTreeType("Дуб", "зелёный")));
+        forest.add(new Tree(1, 2, factory.getTreeType("Oak", "green")));
+        forest.add(new Tree(5, 8, factory.getTreeType("Oak", "green")));
+        forest.add(new Tree(3, 4, factory.getTreeType("Pine", "dark green")));
+        forest.add(new Tree(7, 1, factory.getTreeType("Pine", "dark green")));
+        forest.add(new Tree(9, 6, factory.getTreeType("Oak", "green")));
 
         forest.forEach(Tree::draw);
-        System.out.println("  Деревьев: " + forest.size() + ", объектов TreeType: " + factory.cachedTypes());
+        System.out.println("  Trees: " + forest.size() + ", TreeType objects: " + factory.cachedTypes());
     }
 }

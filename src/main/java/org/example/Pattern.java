@@ -7,31 +7,31 @@ import org.example.patterns.structural.*;
 import java.util.function.Supplier;
 
 public enum Pattern {
-    SINGLETON(1, "Singleton", PatternCategory.CREATIONAL, "Единственный экземпляр класса", SingletonDemo::new),
-    FACTORY_METHOD(2, "Factory Method", PatternCategory.CREATIONAL, "Создание объектов через фабричный метод", FactoryMethodDemo::new),
-    ABSTRACT_FACTORY(3, "Abstract Factory", PatternCategory.CREATIONAL, "Семейства связанных объектов", AbstractFactoryDemo::new),
-    BUILDER(4, "Builder", PatternCategory.CREATIONAL, "Пошаговое создание сложных объектов", BuilderDemo::new),
-    PROTOTYPE(5, "Prototype", PatternCategory.CREATIONAL, "Клонирование объектов", PrototypeDemo::new),
+    SINGLETON(1, "Singleton", PatternCategory.CREATIONAL, "A class with a single instance", SingletonDemo::new),
+    FACTORY_METHOD(2, "Factory Method", PatternCategory.CREATIONAL, "Object creation via a factory method", FactoryMethodDemo::new),
+    ABSTRACT_FACTORY(3, "Abstract Factory", PatternCategory.CREATIONAL, "Families of related objects", AbstractFactoryDemo::new),
+    BUILDER(4, "Builder", PatternCategory.CREATIONAL, "Step-by-step construction of complex objects", BuilderDemo::new),
+    PROTOTYPE(5, "Prototype", PatternCategory.CREATIONAL, "Creating objects by copying", PrototypeDemo::new),
 
-    ADAPTER(6, "Adapter", PatternCategory.STRUCTURAL, "Совместимость несовместимых интерфейсов", AdapterDemo::new),
-    BRIDGE(7, "Bridge", PatternCategory.STRUCTURAL, "Разделение абстракции и реализации", BridgeDemo::new),
-    COMPOSITE(8, "Composite", PatternCategory.STRUCTURAL, "Древовидная структура объектов", CompositeDemo::new),
-    DECORATOR(9, "Decorator", PatternCategory.STRUCTURAL, "Динамическое добавление поведения", DecoratorDemo::new),
-    FACADE(10, "Facade", PatternCategory.STRUCTURAL, "Упрощённый интерфейс к подсистеме", FacadeDemo::new),
-    FLYWEIGHT(11, "Flyweight", PatternCategory.STRUCTURAL, "Разделение общего состояния", FlyweightDemo::new),
-    PROXY(12, "Proxy", PatternCategory.STRUCTURAL, "Заместитель с отложенной загрузкой", ProxyDemo::new),
+    ADAPTER(6, "Adapter", PatternCategory.STRUCTURAL, "Making incompatible interfaces work together", AdapterDemo::new),
+    BRIDGE(7, "Bridge", PatternCategory.STRUCTURAL, "Separating abstraction from implementation", BridgeDemo::new),
+    COMPOSITE(8, "Composite", PatternCategory.STRUCTURAL, "Tree structures of objects", CompositeDemo::new),
+    DECORATOR(9, "Decorator", PatternCategory.STRUCTURAL, "Adding behavior dynamically", DecoratorDemo::new),
+    FACADE(10, "Facade", PatternCategory.STRUCTURAL, "Simple interface to a subsystem", FacadeDemo::new),
+    FLYWEIGHT(11, "Flyweight", PatternCategory.STRUCTURAL, "Sharing common state", FlyweightDemo::new),
+    PROXY(12, "Proxy", PatternCategory.STRUCTURAL, "Placeholder with lazy loading", ProxyDemo::new),
 
-    CHAIN_OF_RESPONSIBILITY(13, "Chain of Responsibility", PatternCategory.BEHAVIORAL, "Цепочка обработчиков", ChainOfResponsibilityDemo::new),
-    COMMAND(14, "Command", PatternCategory.BEHAVIORAL, "Инкапсуляция запроса как объекта", CommandDemo::new),
-    INTERPRETER(15, "Interpreter", PatternCategory.BEHAVIORAL, "Интерпретация грамматики", InterpreterDemo::new),
-    ITERATOR(16, "Iterator", PatternCategory.BEHAVIORAL, "Последовательный обход коллекции", IteratorDemo::new),
-    MEDIATOR(17, "Mediator", PatternCategory.BEHAVIORAL, "Централизованное взаимодействие", MediatorDemo::new),
-    MEMENTO(18, "Memento", PatternCategory.BEHAVIORAL, "Сохранение и восстановление состояния", MementoDemo::new),
-    OBSERVER(19, "Observer", PatternCategory.BEHAVIORAL, "Подписка на изменения", ObserverDemo::new),
-    STATE(20, "State", PatternCategory.BEHAVIORAL, "Поведение в зависимости от состояния", StateDemo::new),
-    STRATEGY(21, "Strategy", PatternCategory.BEHAVIORAL, "Взаимозаменяемые алгоритмы", StrategyDemo::new),
-    TEMPLATE_METHOD(22, "Template Method", PatternCategory.BEHAVIORAL, "Скелет алгоритма в базовом классе", TemplateMethodDemo::new),
-    VISITOR(23, "Visitor", PatternCategory.BEHAVIORAL, "Операции над элементами структуры", VisitorDemo::new);
+    CHAIN_OF_RESPONSIBILITY(13, "Chain of Responsibility", PatternCategory.BEHAVIORAL, "Chain of handlers", ChainOfResponsibilityDemo::new),
+    COMMAND(14, "Command", PatternCategory.BEHAVIORAL, "Request as an object", CommandDemo::new),
+    INTERPRETER(15, "Interpreter", PatternCategory.BEHAVIORAL, "Interpreting a grammar", InterpreterDemo::new),
+    ITERATOR(16, "Iterator", PatternCategory.BEHAVIORAL, "Sequential traversal of a collection", IteratorDemo::new),
+    MEDIATOR(17, "Mediator", PatternCategory.BEHAVIORAL, "Centralized communication", MediatorDemo::new),
+    MEMENTO(18, "Memento", PatternCategory.BEHAVIORAL, "Saving and restoring state", MementoDemo::new),
+    OBSERVER(19, "Observer", PatternCategory.BEHAVIORAL, "Subscribing to changes", ObserverDemo::new),
+    STATE(20, "State", PatternCategory.BEHAVIORAL, "Behavior depends on state", StateDemo::new),
+    STRATEGY(21, "Strategy", PatternCategory.BEHAVIORAL, "Interchangeable algorithms", StrategyDemo::new),
+    TEMPLATE_METHOD(22, "Template Method", PatternCategory.BEHAVIORAL, "Algorithm skeleton in a base class", TemplateMethodDemo::new),
+    VISITOR(23, "Visitor", PatternCategory.BEHAVIORAL, "Operations on elements of a structure", VisitorDemo::new);
 
     private final int number;
     private final String name;

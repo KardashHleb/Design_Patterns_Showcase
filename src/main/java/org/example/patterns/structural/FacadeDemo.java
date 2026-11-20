@@ -6,23 +6,23 @@ public class FacadeDemo implements PatternDemo {
 
     static class Amplifier {
         void on() {
-            System.out.println("  → Усилитель включён");
+            System.out.println("  → Amplifier on");
         }
     }
 
     static class DvdPlayer {
         void on() {
-            System.out.println("  → DVD-плеер включён");
+            System.out.println("  → DVD player on");
         }
 
         void play(String movie) {
-            System.out.println("  → Воспроизведение: " + movie);
+            System.out.println("  → Playing: " + movie);
         }
     }
 
     static class Projector {
         void on() {
-            System.out.println("  → Проектор включён");
+            System.out.println("  → Projector on");
         }
     }
 
@@ -32,7 +32,7 @@ public class FacadeDemo implements PatternDemo {
         private final Projector projector = new Projector();
 
         void watchMovie(String movie) {
-            System.out.println("  Запуск домашнего кинотеатра...");
+            System.out.println("  Starting home theater...");
             amplifier.on();
             dvdPlayer.on();
             projector.on();
@@ -42,7 +42,7 @@ public class FacadeDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Facade скрывает сложность подсистемы за одним методом:");
+        System.out.println("Facade hides a complex subsystem behind one method:");
         HomeTheaterFacade homeTheater = new HomeTheaterFacade();
         homeTheater.watchMovie("Inception");
     }

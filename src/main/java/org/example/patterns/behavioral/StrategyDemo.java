@@ -11,14 +11,14 @@ public class StrategyDemo implements PatternDemo {
     static class CreditCardPayment implements PaymentStrategy {
         @Override
         public void pay(int amount) {
-            System.out.println("  → Оплата $" + amount + " кредитной картой");
+            System.out.println("  → Paid $" + amount + " by credit card");
         }
     }
 
     static class PayPalPayment implements PaymentStrategy {
         @Override
         public void pay(int amount) {
-            System.out.println("  → Оплата $" + amount + " через PayPal");
+            System.out.println("  → Paid $" + amount + " via PayPal");
         }
     }
 
@@ -36,7 +36,7 @@ public class StrategyDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Strategy позволяет менять алгоритм оплаты на лету:");
+        System.out.println("Strategy lets you switch the payment algorithm at runtime:");
         ShoppingCart cart = new ShoppingCart();
         cart.setPaymentStrategy(new CreditCardPayment());
         cart.checkout(100);

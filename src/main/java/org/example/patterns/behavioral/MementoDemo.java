@@ -38,13 +38,13 @@ public class MementoDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Memento сохраняет и восстанавливает состояние:");
+        System.out.println("Memento saves and restores state:");
         Editor editor = new Editor();
         editor.type("Hello");
         EditorMemento snapshot = editor.save();
         editor.type(" World!");
-        System.out.println("  → После изменений: \"" + editor.getContent() + "\"");
+        System.out.println("  → After changes: \"" + editor.getContent() + "\"");
         editor.restore(snapshot);
-        System.out.println("  → После отката:   \"" + editor.getContent() + "\"");
+        System.out.println("  → After restore: \"" + editor.getContent() + "\"");
     }
 }

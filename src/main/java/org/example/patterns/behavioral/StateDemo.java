@@ -28,32 +28,32 @@ public class StateDemo implements PatternDemo {
     static class IdleState implements State {
         @Override
         public void insertCoin(VendingMachine machine) {
-            System.out.println("  → Монета принята");
+            System.out.println("  → Coin accepted");
             machine.setState(new HasCoinState());
         }
 
         @Override
         public void dispense(VendingMachine machine) {
-            System.out.println("  → Сначала вставьте монету");
+            System.out.println("  → Insert a coin first");
         }
     }
 
     static class HasCoinState implements State {
         @Override
         public void insertCoin(VendingMachine machine) {
-            System.out.println("  → Монета уже вставлена");
+            System.out.println("  → Coin already inserted");
         }
 
         @Override
         public void dispense(VendingMachine machine) {
-            System.out.println("  → Напиток выдан");
+            System.out.println("  → Drink dispensed");
             machine.setState(new IdleState());
         }
     }
 
     @Override
     public void run() {
-        System.out.println("State меняет поведение объекта при смене состояния:");
+        System.out.println("State changes an object's behavior when its state changes:");
         VendingMachine machine = new VendingMachine();
         machine.dispense();
         machine.insertCoin();

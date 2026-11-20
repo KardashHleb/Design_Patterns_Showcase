@@ -18,31 +18,31 @@ class ConsoleMenuTest {
 
     @Test
     void exitsOnZero() {
-        assertTrue(runWithInput("0\n").contains("До свидания!"));
+        assertTrue(runWithInput("0\n").contains("Goodbye!"));
     }
 
     @Test
     void exitsGracefullyWhenInputEnds() {
-        assertTrue(runWithInput("").contains("До свидания!"));
+        assertTrue(runWithInput("").contains("Goodbye!"));
     }
 
     @Test
     void exitsGracefullyWhenInputEndsAfterGarbage() {
         String output = runWithInput("abc");
-        assertTrue(output.contains("Введите число"));
-        assertTrue(output.contains("До свидания!"));
+        assertTrue(output.contains("Enter a number"));
+        assertTrue(output.contains("Goodbye!"));
     }
 
     @Test
     void runsSelectedPatternAndReturnsToMenu() {
         String output = runWithInput("1\n\n0\n");
-        assertTrue(output.contains("Singleton (Порождающие)"));
+        assertTrue(output.contains("Singleton (Creational)"));
         assertTrue(output.contains("first == second: true"));
-        assertTrue(output.contains("До свидания!"));
+        assertTrue(output.contains("Goodbye!"));
     }
 
     @Test
     void rejectsUnknownNumber() {
-        assertTrue(runWithInput("99\n0\n").contains("Неверный выбор"));
+        assertTrue(runWithInput("99\n0\n").contains("Invalid choice"));
     }
 }

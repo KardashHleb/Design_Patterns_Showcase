@@ -39,15 +39,15 @@ class CreationalPatternsTest {
 
     @Test
     void builderUsesDefaultsAndOverrides() {
-        assertEquals("Pizza{dough='тонкое', sauce='томатный', topping='сыр'}",
+        assertEquals("Pizza{dough='thin', sauce='tomato', topping='cheese'}",
                 new BuilderDemo.Pizza.Builder().build().toString());
-        assertEquals("Pizza{dough='тонкое', sauce='барбекю', topping='сыр'}",
-                new BuilderDemo.Pizza.Builder().sauce("барбекю").build().toString());
+        assertEquals("Pizza{dough='thin', sauce='barbecue', topping='cheese'}",
+                new BuilderDemo.Pizza.Builder().sauce("barbecue").build().toString());
     }
 
     @Test
     void prototypeCopyIsDeepAndIndependent() {
-        PrototypeDemo.Circle original = new PrototypeDemo.Circle(10, "красный", List.of("фон"));
+        PrototypeDemo.Circle original = new PrototypeDemo.Circle(10, "red", List.of("background"));
         PrototypeDemo.Circle copy = original.copy();
 
         assertNotSame(original, copy);
@@ -56,19 +56,19 @@ class CreationalPatternsTest {
         assertEquals(original.getTags(), copy.getTags());
 
         copy.setRadius(25);
-        copy.setColor("синий");
-        copy.addTag("кнопка");
+        copy.setColor("blue");
+        copy.addTag("button");
 
         assertEquals(10, original.getRadius());
-        assertEquals("красный", original.getColor());
-        assertEquals(List.of("фон"), original.getTags());
-        assertEquals(List.of("фон", "кнопка"), copy.getTags());
+        assertEquals("red", original.getColor());
+        assertEquals(List.of("background"), original.getTags());
+        assertEquals(List.of("background", "button"), copy.getTags());
     }
 
     @Test
     void prototypeRegistryReturnsNewCopyEachTime() {
         PrototypeDemo.ShapeRegistry registry = new PrototypeDemo.ShapeRegistry();
-        registry.register("circle", new PrototypeDemo.Circle(1, "белый", List.of()));
+        registry.register("circle", new PrototypeDemo.Circle(1, "white", List.of()));
 
         assertNotSame(registry.create("circle"), registry.create("circle"));
         assertThrows(IllegalArgumentException.class, () -> registry.create("unknown"));

@@ -26,7 +26,7 @@ public class PrototypeDemo implements PatternDemo {
             this.tags = new ArrayList<>(tags);
         }
 
-        /** Глубокая копия: список тегов копируется, а не разделяется с оригиналом. */
+        /** Deep copy: the tags list is copied, not shared with the original. */
         private Circle(Circle source) {
             this(source.radius, source.color, source.tags);
         }
@@ -62,11 +62,11 @@ public class PrototypeDemo implements PatternDemo {
 
         @Override
         public void draw() {
-            System.out.println("Круг: r=" + radius + ", color=" + color + ", tags=" + tags);
+            System.out.println("Circle: r=" + radius + ", color=" + color + ", tags=" + tags);
         }
     }
 
-    /** Реестр готовых прототипов: клиент знает только ключ, а не конкретный класс. */
+    /** Registry of ready-made prototypes: the client knows only a key, not the concrete class. */
     static class ShapeRegistry {
         private final Map<String, Shape> prototypes = new HashMap<>();
 
@@ -77,7 +77,7 @@ public class PrototypeDemo implements PatternDemo {
         Shape create(String key) {
             Shape prototype = prototypes.get(key);
             if (prototype == null) {
-                throw new IllegalArgumentException("Нет прототипа: " + key);
+                throw new IllegalArgumentException("No prototype: " + key);
             }
             return prototype.copy();
         }
@@ -85,20 +85,20 @@ public class PrototypeDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Prototype создаёт объекты копированием готового образца:");
+        System.out.println("Prototype creates objects by copying a ready-made sample:");
         ShapeRegistry registry = new ShapeRegistry();
-        registry.register("red-circle", new Circle(10, "красный", List.of("фон")));
+        registry.register("red-circle", new Circle(10, "red", List.of("background")));
 
         Circle original = (Circle) registry.create("red-circle");
         Circle copy = original.copy();
         copy.setRadius(25);
-        copy.setColor("синий");
-        copy.addTag("кнопка");
+        copy.setColor("blue");
+        copy.addTag("button");
 
-        System.out.print("  → Оригинал: ");
+        System.out.print("  → Original: ");
         original.draw();
-        System.out.print("  → Копия:    ");
+        System.out.print("  → Copy:     ");
         copy.draw();
-        System.out.println("  Изменения копии не затронули оригинал (глубокое копирование).");
+        System.out.println("  Changing the copy did not affect the original (deep copy).");
     }
 }

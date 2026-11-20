@@ -11,8 +11,6 @@ Pick a pattern from the menu, and a small, self-contained example runs and expla
 Each pattern is implemented in a single file of 30–100 lines, with a real-world analogy instead of abstract `Foo`/`Bar` classes:
 a pizza builder, a coffee decorator, a home-theater facade, a chat-room mediator and so on.
 
-> The console output of the demos is in Russian; the code, the tests and this document are in English.
-
 ---
 
 ## Contents
@@ -46,7 +44,7 @@ Run the tests:
 
 You can also open the project in IntelliJ IDEA or VS Code (with the Java extension) and run `org.example.Main`.
 
-If Cyrillic text looks broken in the Windows console, switch it to UTF-8 first with `chcp 65001`.
+If the box-drawing characters or arrows look broken in the Windows console, switch it to UTF-8 first with `chcp 65001`.
 
 ---
 
@@ -54,32 +52,34 @@ If Cyrillic text looks broken in the Windows console, switch it to UTF-8 first w
 
 ```text
 ╔══════════════════════════════════════════════════════════╗
-║     Design Patterns Showcase — 23 паттерна GoF           ║
+║     Design Patterns Showcase — 23 GoF patterns           ║
 ╚══════════════════════════════════════════════════════════╝
 
-── Порождающие ──
-   1. Singleton                  — Единственный экземпляр класса
-   2. Factory Method             — Создание объектов через фабричный метод
+── Creational ──
+   1. Singleton                  — A class with a single instance
+   2. Factory Method             — Object creation via a factory method
    ...
-── Поведенческие ──
+── Behavioral ──
   ...
-  17. Mediator                   — Централизованное взаимодействие
+  17. Mediator                   — Centralized communication
   ...
 
-Выберите паттерн (1-23) или 0 для выхода: 17
+Choose a pattern (1-23) or 0 to exit: 17
 
 ══════════════════════════════════════════════════════════
-  Mediator (Поведенческие)
+  Mediator (Behavioral)
 ══════════════════════════════════════════════════════════
 
-Mediator: пользователи не знают друг о друге и общаются только через чат-комнату:
-  * Alice вошёл в чат
-  * Bob вошёл в чат
-  * Carol вошёл в чат
-  → Bob получил от Alice: Всем привет!
-  → Carol получил от Alice: Всем привет!
-  → Alice получил от Bob (лично): Привет, Alice!
-  * Пользователь Dave не найден
+Mediator: users do not know about each other and talk only through the chat room:
+  * Alice joined the chat
+  * Bob joined the chat
+  * Carol joined the chat
+  → Bob received from Alice: Hi everyone!
+  → Carol received from Alice: Hi everyone!
+  → Alice received from Bob (private): Hi, Alice!
+  * User Dave not found
+
+Press Enter to return to the menu...
 ```
 
 ---
@@ -239,9 +239,9 @@ classDiagram
 ```
 
 ```text
-  → Эспрессо = $2.00
-  → Эспрессо + молоко = $2.50
-  → Эспрессо + молоко + сахар = $2.70
+  → Espresso = $2.00
+  → Espresso + milk = $2.50
+  → Espresso + milk + sugar = $2.70
 ```
 
 ### Prototype
