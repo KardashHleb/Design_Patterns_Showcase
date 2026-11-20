@@ -2,11 +2,14 @@ package org.example.patterns.structural;
 
 import org.example.PatternDemo;
 
+import java.math.BigDecimal;
+
 public class DecoratorDemo implements PatternDemo {
 
     interface Coffee {
         String description();
-        double cost();
+
+        BigDecimal cost();
     }
 
     static class SimpleCoffee implements Coffee {
@@ -16,8 +19,8 @@ public class DecoratorDemo implements PatternDemo {
         }
 
         @Override
-        public double cost() {
-            return 2.0;
+        public BigDecimal cost() {
+            return new BigDecimal("2.00");
         }
     }
 
@@ -40,8 +43,8 @@ public class DecoratorDemo implements PatternDemo {
         }
 
         @Override
-        public double cost() {
-            return wrapped.cost() + 0.5;
+        public BigDecimal cost() {
+            return wrapped.cost().add(new BigDecimal("0.50"));
         }
     }
 
@@ -56,15 +59,19 @@ public class DecoratorDemo implements PatternDemo {
         }
 
         @Override
-        public double cost() {
-            return wrapped.cost() + 0.2;
+        public BigDecimal cost() {
+            return wrapped.cost().add(new BigDecimal("0.20"));
         }
     }
 
     @Override
     public void run() {
         System.out.println("Decorator добавляет поведение без изменения базового класса:");
-        Coffee coffee = new SugarDecorator(new MilkDecorator(new SimpleCoffee()));
-        System.out.println("  → " + coffee.description() + " = $" + coffee.cost());
+        Coffee espresso = new SimpleCoffee();
+        System.out.println("  → " + espresso.description() + " = $" + espresso.cost());
+        Coffee latte = new MilkDecorator(espresso);
+        System.out.println("  → " + latte.description() + " = $" + latte.cost());
+        Coffee sweetLatte = new SugarDecorator(latte);
+        System.out.println("  → " + sweetLatte.description() + " = $" + sweetLatte.cost());
     }
 }
