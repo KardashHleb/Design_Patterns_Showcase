@@ -21,9 +21,9 @@ public class BuilderDemo implements PatternDemo {
         }
 
         static class Builder {
-            private String dough = "тонкое";
-            private String sauce = "томатный";
-            private String topping = "сыр";
+            private String dough = "thin";
+            private String sauce = "tomato";
+            private String topping = "cheese";
 
             Builder dough(String dough) {
                 this.dough = dough;
@@ -48,11 +48,11 @@ public class BuilderDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Builder пошагово собирает объект:");
+        System.out.println("Builder assembles an object step by step:");
         Pizza pizza = new Pizza.Builder()
-                .dough("толстое")
-                .sauce("барбекю")
-                .topping("пепперони")
+                .dough("thick")
+                .sauce("barbecue")
+                .topping("pepperoni")
                 .build();
         System.out.println("  → " + pizza);
     }

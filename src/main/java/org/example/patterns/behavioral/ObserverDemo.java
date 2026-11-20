@@ -36,13 +36,13 @@ public class ObserverDemo implements PatternDemo {
 
         @Override
         public void update(String event) {
-            System.out.println("  → " + name + " получил новость: " + event);
+            System.out.println("  → " + name + " received news: " + event);
         }
     }
 
     @Override
     public void run() {
-        System.out.println("Observer уведомляет подписчиков об изменениях:");
+        System.out.println("Observer notifies subscribers about changes:");
         NewsAgency agency = new NewsAgency();
         agency.subscribe(new NewsChannel("CNN"));
         agency.subscribe(new NewsChannel("BBC"));

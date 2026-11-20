@@ -11,14 +11,14 @@ public class BridgeDemo implements PatternDemo {
     static class VectorRenderer implements Renderer {
         @Override
         public void renderCircle(float radius) {
-            System.out.println("  → [Vector] Рисуем круг r=" + radius);
+            System.out.println("  → [Vector] Drawing circle r=" + radius);
         }
     }
 
     static class RasterRenderer implements Renderer {
         @Override
         public void renderCircle(float radius) {
-            System.out.println("  → [Raster] Рисуем круг r=" + radius + " пикселями");
+            System.out.println("  → [Raster] Drawing circle r=" + radius + " with pixels");
         }
     }
 
@@ -48,7 +48,7 @@ public class BridgeDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Bridge разделяет абстракцию (Shape) и реализацию (Renderer):");
+        System.out.println("Bridge separates the abstraction (Shape) from the implementation (Renderer):");
         Shape vectorCircle = new Circle(new VectorRenderer(), 5);
         Shape rasterCircle = new Circle(new RasterRenderer(), 5);
         vectorCircle.draw();

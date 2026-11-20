@@ -21,25 +21,25 @@ public class ConsoleMenu {
         printWelcome();
         while (true) {
             printMenu();
-            System.out.print("Выберите паттерн (1-" + Pattern.values().length + ") или 0 для выхода: ");
+            System.out.print("Choose a pattern (1-" + Pattern.values().length + ") or 0 to exit: ");
             OptionalInt choice = readInt();
             if (choice.isEmpty() || choice.getAsInt() == 0) {
                 break;
             }
             Pattern pattern = findByNumber(choice.getAsInt());
             if (pattern == null) {
-                System.out.println("Неверный выбор. Попробуйте снова.\n");
+                System.out.println("Invalid choice. Try again.\n");
                 continue;
             }
             runPattern(pattern);
         }
         System.out.println();
-        System.out.println("До свидания!");
+        System.out.println("Goodbye!");
     }
 
     private void printWelcome() {
         System.out.println("╔══════════════════════════════════════════════════════════╗");
-        System.out.println("║     Design Patterns Showcase — 23 паттерна GoF           ║");
+        System.out.println("║     Design Patterns Showcase — 23 GoF patterns           ║");
         System.out.println("╚══════════════════════════════════════════════════════════╝");
         System.out.println();
     }
@@ -63,7 +63,7 @@ public class ConsoleMenu {
         System.out.println();
         pattern.createDemo().run();
         System.out.println();
-        System.out.print("Нажмите Enter для возврата в меню...");
+        System.out.print("Press Enter to return to the menu...");
         if (scanner.hasNextLine()) {
             scanner.nextLine();
         }
@@ -77,7 +77,7 @@ public class ConsoleMenu {
                 .orElse(null);
     }
 
-    /** Читает число; пустой OptionalInt — ввод закончился (EOF, например Ctrl+D / Ctrl+Z). */
+    /** Reads a number; an empty OptionalInt means the input has ended (EOF, e.g. Ctrl+D / Ctrl+Z). */
     private OptionalInt readInt() {
         while (scanner.hasNext()) {
             if (scanner.hasNextInt()) {
@@ -88,7 +88,7 @@ public class ConsoleMenu {
                 return OptionalInt.of(value);
             }
             scanner.next();
-            System.out.print("Введите число: ");
+            System.out.print("Enter a number: ");
         }
         return OptionalInt.empty();
     }

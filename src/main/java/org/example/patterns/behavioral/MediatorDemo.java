@@ -21,7 +21,7 @@ public class MediatorDemo implements PatternDemo {
         @Override
         public void join(User user) {
             users.add(user);
-            System.out.println("  * " + user.getName() + " вошёл в чат");
+            System.out.println("  * " + user.getName() + " joined the chat");
         }
 
         @Override
@@ -39,8 +39,8 @@ public class MediatorDemo implements PatternDemo {
                     .filter(user -> user.getName().equals(recipientName))
                     .findFirst()
                     .ifPresentOrElse(
-                            user -> user.receive(sender.getName() + " (лично)", message),
-                            () -> System.out.println("  * Пользователь " + recipientName + " не найден"));
+                            user -> user.receive(sender.getName() + " (private)", message),
+                            () -> System.out.println("  * User " + recipientName + " not found"));
         }
     }
 
@@ -73,20 +73,20 @@ public class MediatorDemo implements PatternDemo {
 
         void receive(String from, String message) {
             inbox.add(from + ": " + message);
-            System.out.println("  → " + name + " получил от " + from + ": " + message);
+            System.out.println("  → " + name + " received from " + from + ": " + message);
         }
     }
 
     @Override
     public void run() {
-        System.out.println("Mediator: пользователи не знают друг о друге и общаются только через чат-комнату:");
+        System.out.println("Mediator: users do not know about each other and talk only through the chat room:");
         ChatMediator room = new ChatRoom();
         User alice = new User("Alice", room);
         User bob = new User("Bob", room);
         new User("Carol", room);
 
-        alice.send("Всем привет!");
-        bob.sendTo("Alice", "Привет, Alice!");
-        bob.sendTo("Dave", "Ты здесь?");
+        alice.send("Hi everyone!");
+        bob.sendTo("Alice", "Hi, Alice!");
+        bob.sendTo("Dave", "Are you there?");
     }
 }

@@ -19,40 +19,40 @@ public class TemplateMethodDemo implements PatternDemo {
     static class PdfMiner extends DataMiner {
         @Override
         void openFile() {
-            System.out.println("  → Открыт PDF-файл");
+            System.out.println("  → Opened PDF file");
         }
 
         @Override
         void extractData() {
-            System.out.println("  → Извлечены данные из PDF");
+            System.out.println("  → Extracted data from PDF");
         }
 
         @Override
         void closeFile() {
-            System.out.println("  → PDF-файл закрыт");
+            System.out.println("  → PDF file closed");
         }
     }
 
     static class CsvMiner extends DataMiner {
         @Override
         void openFile() {
-            System.out.println("  → Открыт CSV-файл");
+            System.out.println("  → Opened CSV file");
         }
 
         @Override
         void extractData() {
-            System.out.println("  → Извлечены данные из CSV");
+            System.out.println("  → Extracted data from CSV");
         }
 
         @Override
         void closeFile() {
-            System.out.println("  → CSV-файл закрыт");
+            System.out.println("  → CSV file closed");
         }
     }
 
     @Override
     public void run() {
-        System.out.println("Template Method задаёт скелет алгоритма, детали — в подклассах:");
+        System.out.println("Template Method defines the algorithm skeleton, subclasses fill in the steps:");
         System.out.println("PDF:");
         new PdfMiner().mine();
         System.out.println("CSV:");

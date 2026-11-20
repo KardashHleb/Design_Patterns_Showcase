@@ -15,28 +15,28 @@ public class AbstractFactoryDemo implements PatternDemo {
     static class WinButton implements Button {
         @Override
         public void render() {
-            System.out.println("  → [Windows] Кнопка");
+            System.out.println("  → [Windows] Button");
         }
     }
 
     static class WinCheckbox implements Checkbox {
         @Override
         public void render() {
-            System.out.println("  → [Windows] Чекбокс");
+            System.out.println("  → [Windows] Checkbox");
         }
     }
 
     static class MacButton implements Button {
         @Override
         public void render() {
-            System.out.println("  → [macOS] Кнопка");
+            System.out.println("  → [macOS] Button");
         }
     }
 
     static class MacCheckbox implements Checkbox {
         @Override
         public void render() {
-            System.out.println("  → [macOS] Чекбокс");
+            System.out.println("  → [macOS] Checkbox");
         }
     }
 
@@ -76,7 +76,7 @@ public class AbstractFactoryDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Абстрактная фабрика создаёт согласованное семейство UI-компонентов:");
+        System.out.println("Abstract Factory creates a consistent family of UI components:");
         System.out.println("Windows UI:");
         paint(new WinFactory());
         System.out.println("macOS UI:");

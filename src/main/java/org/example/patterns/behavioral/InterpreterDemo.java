@@ -55,12 +55,12 @@ public class InterpreterDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Interpreter вычисляет выражение a + b - c:");
+        System.out.println("Interpreter evaluates the expression a + b - c:");
         Map<String, Integer> context = Map.of("a", 10, "b", 5, "c", 3);
         Expression expr = new SubtractExpression(
                 new AddExpression(new VariableExpression("a"), new VariableExpression("b")),
                 new VariableExpression("c")
         );
-        System.out.println("  → a=10, b=5, c=3 → результат: " + expr.interpret(context));
+        System.out.println("  → a=10, b=5, c=3 → result: " + expr.interpret(context));
     }
 }

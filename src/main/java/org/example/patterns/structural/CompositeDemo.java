@@ -47,7 +47,7 @@ public class CompositeDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Composite обрабатывает файлы и папки единообразно:");
+        System.out.println("Composite treats files and folders uniformly:");
         Folder root = new Folder("src");
         Folder main = new Folder("main");
         main.add(new File("Main.java"));

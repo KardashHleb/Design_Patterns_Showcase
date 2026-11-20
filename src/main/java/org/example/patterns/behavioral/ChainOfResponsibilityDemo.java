@@ -16,7 +16,7 @@ public class ChainOfResponsibilityDemo implements PatternDemo {
             if (next != null) {
                 next.handle(amount);
             } else {
-                System.out.println("  → Запрос не обработан: $" + amount);
+                System.out.println("  → Request not handled: $" + amount);
             }
         }
     }
@@ -25,7 +25,7 @@ public class ChainOfResponsibilityDemo implements PatternDemo {
         @Override
         void handle(int amount) {
             if (amount <= 100) {
-                System.out.println("  → Bank: одобрено $" + amount);
+                System.out.println("  → Bank: approved $" + amount);
             } else {
                 super.handle(amount);
             }
@@ -36,7 +36,7 @@ public class ChainOfResponsibilityDemo implements PatternDemo {
         @Override
         void handle(int amount) {
             if (amount <= 500) {
-                System.out.println("  → PayPal: одобрено $" + amount);
+                System.out.println("  → PayPal: approved $" + amount);
             } else {
                 super.handle(amount);
             }
@@ -46,13 +46,13 @@ public class ChainOfResponsibilityDemo implements PatternDemo {
     static class BitcoinHandler extends Handler {
         @Override
         void handle(int amount) {
-            System.out.println("  → Bitcoin: одобрено $" + amount);
+            System.out.println("  → Bitcoin: approved $" + amount);
         }
     }
 
     @Override
     public void run() {
-        System.out.println("Chain of Responsibility передаёт запрос по цепочке:");
+        System.out.println("Chain of Responsibility passes a request along a chain:");
         Handler chain = new BankHandler();
         chain.linkWith(new PayPalHandler()).linkWith(new BitcoinHandler());
         chain.handle(50);

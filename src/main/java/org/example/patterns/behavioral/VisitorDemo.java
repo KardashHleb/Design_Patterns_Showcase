@@ -60,14 +60,14 @@ public class VisitorDemo implements PatternDemo {
         public void visit(Circle circle) {
             double area = Math.PI * circle.getRadius() * circle.getRadius();
             totalArea += area;
-            System.out.printf("  → Круг r=%.1f, площадь=%.2f%n", circle.getRadius(), area);
+            System.out.printf("  → Circle r=%.1f, area=%.2f%n", circle.getRadius(), area);
         }
 
         @Override
         public void visit(Rectangle rectangle) {
             double area = rectangle.getWidth() * rectangle.getHeight();
             totalArea += area;
-            System.out.printf("  → Прямоугольник %.1fx%.1f, площадь=%.2f%n",
+            System.out.printf("  → Rectangle %.1fx%.1f, area=%.2f%n",
                     rectangle.getWidth(), rectangle.getHeight(), area);
         }
 
@@ -78,12 +78,12 @@ public class VisitorDemo implements PatternDemo {
 
     @Override
     public void run() {
-        System.out.println("Visitor добавляет операции над элементами без изменения их классов:");
+        System.out.println("Visitor adds operations on elements without changing their classes:");
         Shape[] shapes = {new Circle(3), new Rectangle(4, 5), new Circle(2)};
         AreaCalculator calculator = new AreaCalculator();
         for (Shape shape : shapes) {
             shape.accept(calculator);
         }
-        System.out.printf("  → Общая площадь: %.2f%n", calculator.getTotalArea());
+        System.out.printf("  → Total area: %.2f%n", calculator.getTotalArea());
     }
 }
